@@ -104,8 +104,8 @@ def process_dir(
     paths = Paths(output_dir)
 
     # look for images in current dir to process
-    exts = ("*.[pP][nN][gG]", "*.[jJ][pP][gG]", "*.[jJ][pP][eE][gG]")
-    omr_files = sorted([f for ext in exts for f in curr_dir.glob(ext)])
+    exts = {".png", ".jpg", ".jpeg", ".tif", ".tiff"}
+    omr_files = sorted([f for f in curr_dir.glob("*.*") if f.suffix.lower() in exts])
 
     # Exclude images (take union over all pre_processors)
     excluded_files = []
