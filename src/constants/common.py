@@ -40,6 +40,14 @@ FIELD_TYPES = {
     #
     # You can create and append custom field types here-
     #
+    "QTYPE_MCQ4_V": {
+        "bubbleValues": ["A", "B", "C", "D"],
+        "direction": "vertical"
+    },
+    "QTYPE_MCQ5_V": {
+        "bubbleValues": ["A", "B", "C", "D", "E"],
+        "direction": "vertical"
+    }
 }
 
 # TODO: move to interaction.py
