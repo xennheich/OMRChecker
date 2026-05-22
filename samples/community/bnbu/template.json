@@ -1,10 +1,10 @@
 {
   "pageDimensions": [
-    4170,
-    3755
+    4197,
+    3652
   ],
   "bubbleDimensions": [
-    135,
+    144,
     40
   ],
   "preProcessors": [
@@ -12,7 +12,8 @@
       "name": "CropOnMarkers",
       "options": {
         "relativePath": "omr_marker.jpg",
-        "sheetToMarkerWidthRatio": 17
+        "sheetToMarkerWidthRatio": 17,
+        "use_original_image_size": true
       }
     }
   ],
@@ -27,11 +28,11 @@
       "fieldLabels": [
         "roll0..9"
       ],
-      "bubblesGap": 82,
-      "labelsGap": 168,
+      "bubblesGap": 81,
+      "labelsGap": 168.8,
       "origin": [
-        1685,
-        300
+        1696,
+        249
       ]
     },
     "MCQ_Block_Q1": {
@@ -39,11 +40,11 @@
       "fieldLabels": [
         "q1..5"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 81,
+      "labelsGap": 171,
       "origin": [
-        155,
-        1250
+        164,
+        1184
       ]
     },
     "MCQ_Block_Q6": {
@@ -51,11 +52,11 @@
       "fieldLabels": [
         "q6..10"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 79,
+      "labelsGap": 170,
       "origin": [
-        1180,
-        1250
+        1188,
+        1184
       ]
     },
     "MCQ_Block_Q11": {
@@ -63,11 +64,11 @@
       "fieldLabels": [
         "q11..15"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 81,
+      "labelsGap": 169,
       "origin": [
-        2190,
-        1250
+        2205,
+        1180
       ]
     },
     "MCQ_Block_Q16": {
@@ -75,11 +76,11 @@
       "fieldLabels": [
         "q16..20"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 81,
+      "labelsGap": 165,
       "origin": [
-        3200,
-        1250
+        3216,
+        1180
       ]
     },
     "MCQ_Block_Q21": {
@@ -87,11 +88,11 @@
       "fieldLabels": [
         "q21..25"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 80,
+      "labelsGap": 170,
       "origin": [
-        155,
-        1735
+        164,
+        1672
       ]
   },
     "MCQ_Block_Q26": {
@@ -99,11 +100,11 @@
       "fieldLabels": [
         "q26..30"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 81,
+      "labelsGap": 170,
       "origin": [
-        1180,
-        1735
+        1190,
+        1670
       ]
     },
     "MCQ_Block_Q31": {
@@ -111,11 +112,11 @@
       "fieldLabels": [
         "q31..35"
       ],
-      "bubblesGap": 78,
+      "bubblesGap": 80,
       "labelsGap": 168,
       "origin": [
-        2190,
-        1735
+        2205,
+        1666
       ]
     },
     "MCQ_Block_Q36": {
@@ -123,11 +124,11 @@
       "fieldLabels": [
         "q36..40"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 80,
+      "labelsGap": 166,
       "origin": [
-        3200,
-        1735
+        3215,
+        1668
       ]
     },
     "MCQ_Block_Q41": {
@@ -135,11 +136,11 @@
       "fieldLabels": [
         "q41..45"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 80,
+      "labelsGap": 170,
       "origin": [
-        155,
-        2230
+        164,
+        2162
       ]
     },
     "MCQ_Block_Q46": {  
@@ -147,11 +148,11 @@
       "fieldLabels": [
         "q46..50"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 81,
+      "labelsGap": 170,
       "origin": [
-        1180,
-        2230
+        1188,
+        2157
       ]
     },
     "MCQ_Block_Q51": {
@@ -159,11 +160,11 @@
       "fieldLabels": [
         "q51..55"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 81,
+      "labelsGap": 169,
       "origin": [
-        2190,
-        2230
+        2202,
+        2154
       ]
     },
     "MCQ_Block_Q56": {
@@ -171,11 +172,11 @@
       "fieldLabels": [
         "q56..60"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 81,
+      "labelsGap": 165,
       "origin": [
-        3200,
-        2230
+        3215,
+        2154
       ]
     },
     "MCQ_Block_Q61": {
@@ -183,11 +184,11 @@
       "fieldLabels": [
         "q61..65"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 81,
+      "labelsGap": 170,
       "origin": [
-        155,
-        2720
+        164,
+        2648
       ]
     },
     "MCQ_Block_Q66": {
@@ -195,11 +196,11 @@
       "fieldLabels": [
         "q66..70"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 80,
+      "labelsGap": 170,
       "origin": [
-        1180,
-        2720
+        1188,
+        2646
       ]
     },
     "MCQ_Block_Q71": {
@@ -207,11 +208,11 @@
       "fieldLabels": [
         "q71..75"
       ],
-      "bubblesGap": 78,
+      "bubblesGap": 81,
       "labelsGap": 168,
       "origin": [
-        2190,
-        2720
+        2202,
+        2640
       ]
     },
     "MCQ_Block_Q76": {
@@ -219,11 +220,11 @@
       "fieldLabels": [
         "q76..80"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 81,
+      "labelsGap": 166,
       "origin": [
-        3200,
-        2720
+        3213,
+        2639
       ]
     },
     "MCQ_Block_Q81": {
@@ -231,11 +232,11 @@
       "fieldLabels": [
         "q81..85"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 82,
+      "labelsGap": 170,
       "origin": [
-        155,
-        3215
+        161,
+        3135
       ]
     },
     "MCQ_Block_Q86": {
@@ -243,11 +244,11 @@
       "fieldLabels": [
         "q86..90"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 81,
+      "labelsGap": 169,
       "origin": [
-        1180,
-        3215
+        1188,
+        3133
       ]
     },
     "MCQ_Block_Q91": {
@@ -255,11 +256,11 @@
       "fieldLabels": [
         "q91..95"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 81,
+      "labelsGap": 169,
       "origin": [
-        2190,
-        3215
+        2202,
+        3131
       ]
     },
     "MCQ_Block_Q96": {
@@ -267,11 +268,11 @@
       "fieldLabels": [
         "q96..100"
       ],
-      "bubblesGap": 78,
-      "labelsGap": 168,
+      "bubblesGap": 82,
+      "labelsGap": 166,
       "origin": [
-        3200,
-        3215
+        3208,
+        3131
       ]
     }
   }

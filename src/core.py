@@ -31,12 +31,17 @@ class ImageInstanceOps:
 
     def apply_preprocessors(self, file_path, in_omr, template):
         tuning_config = self.tuning_config
-        # resize to conform to template
-        in_omr = ImageUtils.resize_util(
-            in_omr,
-            tuning_config.dimensions.processing_width,
-            tuning_config.dimensions.processing_height,
+        should_skip_pre_resize = any(
+            getattr(pre_processor, "use_original_image_size", False)
+            for pre_processor in template.pre_processors
         )
+        if not should_skip_pre_resize:
+            # resize to conform to processing dimensions
+            in_omr = ImageUtils.resize_util(
+                in_omr,
+                tuning_config.dimensions.processing_width,
+                tuning_config.dimensions.processing_height,
+            )
 
         # run pre_processors in sequence
         for pre_processor in template.pre_processors:
@@ -48,10 +53,10 @@ class ImageInstanceOps:
         auto_align = config.alignment_params.auto_align
         try:
             img = image.copy()
-            # origDim = img.shape[:2]
-            img = ImageUtils.resize_util(
-                img, template.page_dimensions[0], template.page_dimensions[1]
-            )
+            if template.page_dimensions is not None:
+                img = ImageUtils.resize_util(
+                    img, template.page_dimensions[0], template.page_dimensions[1]
+                )
             if img.max() > img.min():
                 img = ImageUtils.normalize_util(img)
             # Processing copies
@@ -434,9 +439,10 @@ class ImageInstanceOps:
 
     @staticmethod
     def draw_template_layout(img, template, shifted=True, draw_qvals=False, border=-1):
-        img = ImageUtils.resize_util(
-            img, template.page_dimensions[0], template.page_dimensions[1]
-        )
+        if template.page_dimensions is not None:
+            img = ImageUtils.resize_util(
+                img, template.page_dimensions[0], template.page_dimensions[1]
+            )
         final_align = img.copy()
         for field_block in template.field_blocks:
             s, d = field_block.origin, field_block.dimensions

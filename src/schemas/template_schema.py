@@ -35,7 +35,6 @@ TEMPLATE_SCHEMA = {
     "type": "object",
     "required": [
         "bubbleDimensions",
-        "pageDimensions",
         "preProcessors",
         "fieldBlocks",
     ],
@@ -59,7 +58,7 @@ TEMPLATE_SCHEMA = {
         },
         "pageDimensions": {
             **two_positive_integers,
-            "description": "The dimensions(width, height) to which the page will be resized to before applying template",
+            "description": "Optional dimensions(width, height) to which the page will be resized before applying template",
         },
         "preProcessors": {
             "description": "Custom configuration values to use in the template's directory",
@@ -96,6 +95,7 @@ TEMPLATE_SCHEMA = {
                                         "min_matching_threshold": {"type": "number"},
                                         "relativePath": {"type": "string"},
                                         "sheetToMarkerWidthRatio": {"type": "number"},
+                                        "use_original_image_size": {"type": "boolean"},
                                     },
                                     "required": ["relativePath"],
                                 }
