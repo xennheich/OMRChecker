@@ -41,8 +41,6 @@ class CropOnMarkers(ImagePreprocessor):
         )
         self.marker_rescale_steps = int(marker_ops.get("marker_rescale_steps", 10))
         self.apply_erode_subtract = marker_ops.get("apply_erode_subtract", True)
-        self.use_original_image_size = marker_ops.get("use_original_image_size", False)
-        self.sheet_to_marker_width_ratio = marker_ops.get("sheetToMarkerWidthRatio")
         self.marker = self.load_marker(marker_ops, config)
 
     def __str__(self):
@@ -54,7 +52,6 @@ class CropOnMarkers(ImagePreprocessor):
     def apply_filter(self, image, file_path):
         config = self.tuning_config
         image_instance_ops = self.image_instance_ops
-        marker = self.get_marker_for_image_width(image.shape[1])
         image_eroded_sub = ImageUtils.normalize_util(
             image
             if self.apply_erode_subtract
@@ -84,14 +81,14 @@ class CropOnMarkers(ImagePreprocessor):
         image_eroded_sub[:, midw : midw + 2] = DEFAULT_WHITE_COLOR
         image_eroded_sub[midh : midh + 2, :] = DEFAULT_WHITE_COLOR
 
-        best_scale, all_max_t = self.getBestMatch(image_eroded_sub, marker)
+        best_scale, all_max_t = self.getBestMatch(image_eroded_sub)
         if best_scale is None:
             if config.outputs.show_image_level >= 1:
                 InteractionUtils.show("Quads", image_eroded_sub, config=config)
             return None
 
         optimal_marker = ImageUtils.resize_util_h(
-            marker, u_height=int(marker.shape[0] * best_scale)
+            self.marker, u_height=int(self.marker.shape[0] * best_scale)
         )
         _h, w = optimal_marker.shape[:2]
         centres = []
@@ -191,7 +188,7 @@ class CropOnMarkers(ImagePreprocessor):
         # image_eroded_sub = image_norm - cv2.erode(image_norm, kernel=np.ones((5,5)),iterations=2)
         return image
 
-    def load_marker(self, marker_ops, _config):
+    def load_marker(self, marker_ops, config):
         if not os.path.exists(self.marker_path):
             logger.error(
                 "Marker not found at path provided in template:",
@@ -200,6 +197,13 @@ class CropOnMarkers(ImagePreprocessor):
             exit(31)
 
         marker = cv2.imread(self.marker_path, cv2.IMREAD_GRAYSCALE)
+
+        if "sheetToMarkerWidthRatio" in marker_ops:
+            marker = ImageUtils.resize_util(
+                marker,
+                config.dimensions.processing_width
+                / int(marker_ops["sheetToMarkerWidthRatio"]),
+            )
         marker = cv2.GaussianBlur(
             marker,
             DEFAULT_GAUSSIAN_BLUR_PARAMS_MARKER["kernel_size"],
@@ -222,21 +226,14 @@ class CropOnMarkers(ImagePreprocessor):
 
         return marker
 
-    def get_marker_for_image_width(self, image_width):
-        marker = self.marker
-        if self.sheet_to_marker_width_ratio:
-            target_width = max(1, int(image_width / int(self.sheet_to_marker_width_ratio)))
-            marker = ImageUtils.resize_util(marker, target_width)
-        return marker
-
     # Resizing the marker within scaleRange at rate of descent_per_step to
     # find the best match.
-    def getBestMatch(self, image_eroded_sub, marker):
+    def getBestMatch(self, image_eroded_sub):
         config = self.tuning_config
         descent_per_step = (
             self.marker_rescale_range[1] - self.marker_rescale_range[0]
         ) // self.marker_rescale_steps
-        _h, _w = marker.shape[:2]
+        _h, _w = self.marker.shape[:2]
         res, best_scale = None, None
         all_max_t = 0
 
@@ -249,7 +246,7 @@ class CropOnMarkers(ImagePreprocessor):
             if s == 0.0:
                 continue
             rescaled_marker = ImageUtils.resize_util_h(
-                marker, u_height=int(_h * s)
+                self.marker, u_height=int(_h * s)
             )
             # res is the black image with white dots
             res = cv2.matchTemplate(

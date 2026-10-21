@@ -1,5 +1,9 @@
 {
-    "outputs": {
+  "dimensions": {
+    "processing_height": 7016,
+    "processing_width": 4961
+  },
+  "outputs": {
     "show_image_level": 5
   }
 }

@@ -186,25 +186,24 @@ class Template:
             )
         self.all_parsed_labels.update(field_labels_set)
 
-        if self.page_dimensions is not None:
-            page_width, page_height = self.page_dimensions
-            block_width, block_height = block_instance.dimensions
-            [block_start_x, block_start_y] = block_instance.origin
+        page_width, page_height = self.page_dimensions
+        block_width, block_height = block_instance.dimensions
+        [block_start_x, block_start_y] = block_instance.origin
 
-            block_end_x, block_end_y = (
-                block_start_x + block_width,
-                block_start_y + block_height,
+        block_end_x, block_end_y = (
+            block_start_x + block_width,
+            block_start_y + block_height,
+        )
+
+        if (
+            block_end_x >= page_width
+            or block_end_y >= page_height
+            or block_start_x < 0
+            or block_start_y < 0
+        ):
+            raise Exception(
+                f"Overflowing field block '{block_name}' with origin {block_instance.origin} and dimensions {block_instance.dimensions} in template with dimensions {self.page_dimensions}"
             )
-
-            if (
-                block_end_x >= page_width
-                or block_end_y >= page_height
-                or block_start_x < 0
-                or block_start_y < 0
-            ):
-                raise Exception(
-                    f"Overflowing field block '{block_name}' with origin {block_instance.origin} and dimensions {block_instance.dimensions} in template with dimensions {self.page_dimensions}"
-                )
 
     def __str__(self):
         return str(self.path)
